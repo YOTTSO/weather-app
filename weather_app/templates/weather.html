@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Погода</title>
+</head>
+<body>
+    <h1>Узнать погоду (Open-Meteo)</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="city" placeholder="Введите город">
+        <button type="submit">Получить</button>
+    </form>
+
+    {% if weather %}
+        <h2>Текущая погода в городе {{ weather.city }}</h2>
+        <p>Температура: {{ weather.temperature }}°C</p>
+        <p>Описание: {{ weather.description }}</p>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'history_view' %}">Посмотреть историю запросов</a>
+</body>
+</html>

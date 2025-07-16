@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>История запросов</title>
+</head>
+<body>
+    <h1>История запросов</h1>
+    <ul>
+        {% for query in queries %}
+            <li>
+                {{ query.city_name }} ({{ query.query_timestamp|date:"d.m.Y H:i" }}):
+                {{ query.temperature }}°C, {{ query.description }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'weather_view' %}">Вернуться на главную</a>
+</body>
+</html>
